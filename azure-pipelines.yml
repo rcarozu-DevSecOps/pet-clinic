@@ -42,3 +42,8 @@ pool:
     SonarCloud: 'rcarozu-sonar'
     organization: 'rcarozu-devsecops'
 
+- task: dependency-check-build-task@6
+  inputs:
+    projectName: 'pet-clinic'
+    format: 'HTML'
+
