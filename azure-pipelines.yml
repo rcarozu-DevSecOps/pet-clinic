@@ -45,5 +45,6 @@ pool:
 - task: dependency-check-build-task@6
   inputs:
     projectName: 'pet-clinic'
+    scanPath: '${Build.SourcesDirectory}/build/libs'
     format: 'HTML'
 
