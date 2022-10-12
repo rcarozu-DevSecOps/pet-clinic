@@ -21,20 +21,19 @@ steps:
   inputs:
     SonarCloud: 'rcarozu-sonar'
     organization: 'rcarozu-devsecops'
-    scannerMode: 'MSBuild'
     projectKey: 'rcarozu-DevSecOps_pet-clinic'
     projectName: 'pet-clinic'
 
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'build'
+    tasks: 'sonarcube'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: true
     sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '2.6.1'
+    sonarQubeGradlePluginVersion: '3.3'
     spotBugsAnalysis: false
 
 - task: sonarcloud-buildbreaker@2
