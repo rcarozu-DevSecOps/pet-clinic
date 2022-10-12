@@ -6,7 +6,6 @@
 pool:
   vmImage: ubuntu-latest
 
-
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
