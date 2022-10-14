@@ -17,13 +17,6 @@ steps:
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
 
-- task: SonarCloudPrepare@1
-  inputs:
-    SonarCloud: 'rcarozu-sonar'
-    organization: 'rcarozu-devsecops'
-    projectKey: 'rcarozu-DevSecOps_pet-clinic'
-    projectName: 'pet-clinic'
-    
 steps:
 - task: Maven@3
   inputs:
@@ -33,7 +26,14 @@ steps:
     jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
     mavenOptions: '-Xmx3072m'    
-
+    
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'rcarozu-sonar'
+    organization: 'rcarozu-devsecops'
+    projectKey: 'rcarozu-DevSecOps_pet-clinic'
+    projectName: 'pet-clinic'
+    
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
