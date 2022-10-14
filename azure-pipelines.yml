@@ -27,7 +27,7 @@ steps:
 - task: Gradle@3
   inputs:
     gradleWrapperFile: 'gradlew'
-    tasks: 'sonarcube'
+    tasks: 'Sonarcube'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -35,6 +35,7 @@ steps:
     sqGradlePluginVersionChoice: 'specify'
     sonarQubeGradlePluginVersion: '3.3'
     spotBugsAnalysis: false
+
 
 - task: dependency-check-build-task@6
   inputs:
