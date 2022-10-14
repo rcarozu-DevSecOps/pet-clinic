@@ -1,7 +1,4 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+
 
 pool:
   vmImage: ubuntu-latest
@@ -17,15 +14,6 @@ steps:
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
 
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    mavenVersionOption: 'Default'
-    mavenOptions: '-Xmx3072m'    
-    
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'rcarozu-sonar'
@@ -49,7 +37,7 @@ steps:
 - task: dependency-check-build-task@6
   inputs:
     projectName: 'pet-clinic'
-    scanPath: '${Build.SourcesDirectory}/build/libs'
+    scanPath: '$(Build.SourcesDirectory)/build/libs'
     format: 'HTML'
 
 - task: DockerInstaller@0
@@ -64,7 +52,15 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker'
+    repository: 'rcarozu-DevSecOps/pet-clinic'
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: 'latest'
 
+- script: | 
+    sudo apt-get install -y rpm
+    wget https://github.com/aquasecurity/trivy/releases/download/v0.27.1/trivy_0.27.1_Linux-64bit.deb
+    sudo dpkg -i trivy_0.27.1_Linux-64bit.deb
+    trivy image rcarozu-DevSecOps/pet-clinic:latest
+  displayName: Image Scan
 
