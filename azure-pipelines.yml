@@ -52,7 +52,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker'
-    repository: 'rcarozu-DevSecOps/pet-clinic'
+    repository: 'rcarozu-devsecops/pet-clinic'
     command: 'build'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
