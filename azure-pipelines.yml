@@ -64,3 +64,10 @@ steps:
     trivy image rcarozu-devsecops/pet-clinic:latest
   displayName: Image Scan
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Docker'
+    repository: 'rcarozu-DevSecOps/pet-clinic'
+    command: 'push'
+    tags: 'latest'
+
