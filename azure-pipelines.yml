@@ -71,13 +71,3 @@ steps:
     command: 'push'
     tags: 'latest'
 
-- task: GitHubRelease@1
-  inputs:
-    gitHubConnection: 'github.com_rcarozu'
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    tagPattern: 'Prueba1'
-    changeLogCompareToRelease: 'lastFullRelease'
-    changeLogType: 'commitBased'
